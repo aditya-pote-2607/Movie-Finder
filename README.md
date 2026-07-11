@@ -8,7 +8,8 @@ My first React project.
 - Created React application
 - Setup project structure
 - Initialized Git
-- Uploaded project to GitHub
+- Uploaded project to 
+-
 
 ## Tech Stack
 - React

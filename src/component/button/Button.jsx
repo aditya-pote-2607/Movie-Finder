@@ -1,11 +1,11 @@
 
 
 
-function Button({children,clickHandle}) {
+function Button({children,clickHandle,css}) {
 
   
   return (
-    <button className="p-2 cursor-pointer " onClick={clickHandle}>{children}</button>
+    <button className={`p-2 cursor-pointer ${css}` } onClick={clickHandle}>{children}</button>
   )
 }
 

@@ -1,10 +1,12 @@
 
 import Home from './pages/Home'
+import SearchPage from './pages/SearchPage'
 
 function App() {
   return (
     <div>
-      <Home />
+      {/* <Home /> */}
+      <SearchPage />
     </div>
   )
 }

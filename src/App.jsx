@@ -1,13 +1,13 @@
+import { RouterProvider } from 'react-router-dom'
+import router from './routes/AppRoutes.jsx'
+import ContextAppProvider from '../../data/context/appContext.jsx'
 
-import Home from './pages/Home'
-import SearchPage from './pages/SearchPage'
 
 function App() {
   return (
-    <div>
-      {/* <Home /> */}
-      <SearchPage />
-    </div>
+    // <ContextAppProvider>
+      <RouterProvider router={router} />
+    // </ContextAppProvider>
   )
 }
 

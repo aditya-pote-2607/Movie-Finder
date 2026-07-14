@@ -1,7 +1,18 @@
 import { FaPlay } from "react-icons/fa";
 import Button from "../Button/Button";
+import NotFound from "../../pages/NotFound";
+import Loading from "../loading/Loading";
 
-function SearchOutput({data}) {
+function SearchOutput({ data, name, loading }) {
+    if (loading) {
+        return <Loading />;
+    }
+    if (data === undefined) {
+        return null;
+    }
+    if (data.Response === "False") {
+        return <NotFound movieName={name} />;
+    }
     return (
         <div className="relative h-[90vh] overflow-hidden">
             <div
@@ -42,18 +53,18 @@ function SearchOutput({data}) {
                 </div>
                 <div className="">
                     <details name="faq-group">
-                        <summary>Starcast</summary>
-                        <p>{data?.Actors}</p>
+                        <summary className="cursor-pointer font-semibold">Starcast</summary>
+                        <p className="mt-2 text-gray-200">{data?.Actors}</p>
                     </details>
 
                     <details name="faq-group">
-                        <summary>Description</summary>
-                        <p>{data?.Plot}</p>
-                    </details>
+                        <summary className="cursor-pointer font-semibold">Description</summary>
+                        <p className="mt-2 text-gray-200">{data?.Plot}</p>
+                    </details> 
 
                     <details name="faq-group">
-                        <summary>Language</summary>
-                        <p>{data?.Language}</p>
+                        <summary className="cursor-pointer font-semibold">Language</summary>
+                        <p className="mt-2 text-gray-200">{data?.Language}</p>
                     </details>
                 </div>
             </div>

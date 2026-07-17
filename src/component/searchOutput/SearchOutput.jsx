@@ -4,6 +4,9 @@ import NotFound from "../../pages/NotFound";
 import Loading from "../loading/Loading";
 
 function SearchOutput({ data, name, loading }) {
+    function HandleWatchTrailer(){
+       window.open(`https://www.youtube.com/results?search_query=${name} movie trailer`, "_blank");
+    }
     if (loading) {
         return <Loading />;
     }
@@ -43,7 +46,7 @@ function SearchOutput({ data, name, loading }) {
                             Add To Watchlist
                         </Button>
 
-                        <Button css="p-2 rounded-4xl text-black m-2 bg-green-700">
+                        <Button clickHandle={HandleWatchTrailer}  css="p-2 rounded-4xl text-black m-2 bg-green-700">
                             <span className="flex items-center gap-1">
                                 <FaPlay /> Watch Trailer
                             </span>

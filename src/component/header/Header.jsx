@@ -6,21 +6,28 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 function Header() {
-    const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn)
-    const user = useSelector((state)=>state.auth.user)
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const user = useSelector((state) => state.auth.user)
 
 
     const navigate = useNavigate();
     function HandleProfile() {
         if (!isLoggedIn) {
             navigate("/login")
-        }else{
+        } else {
             navigate("/Profile")
         }
     }
     function HandleSearch(e) {
         const name = e.target.value;
         navigate(`/movie?name=${encodeURIComponent(name)}`);
+    }
+    function HandleWatchList() {
+        if (!isLoggedIn) {
+            navigate("/login")
+        } else {
+            navigate("/Watchlist")
+        }
     }
     return (
         <nav className="bg-gray-900 text-white p-3 flex justify-between">
@@ -31,8 +38,8 @@ function Header() {
             </Link>
             <Search placeholder={"search Movie..."} onSearch={HandleSearch} />
             <div >
-                <Button clickHandle={HandleProfile}>  {isLoggedIn? user.username :"profile"}</Button>
-                <Button>Watchlist</Button>
+                <Button clickHandle={HandleProfile}>  {isLoggedIn ? user.username : "profile"}</Button>
+                <Button clickHandle={HandleWatchList}>Watchlist</Button>
             </div>
         </nav>
     )

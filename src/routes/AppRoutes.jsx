@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import SearchPage from "../pages/SearchPage";
 import Login from "../pages/LoginPage";
 import SideProfile from "../pages/SideProfile";
+import Watchlist from "../pages/Watchlist";
 
 
    
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/Profile",
     element: <SideProfile/>,
+  },
+  {
+    path: "/watchlist",
+    element: <Watchlist/>,
   },
 ]);
 

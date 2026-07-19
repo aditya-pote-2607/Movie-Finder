@@ -3,20 +3,25 @@ import Button from "../Button/Button";
 import NotFound from "../../pages/NotFound";
 import Loading from "../loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWatchlist } from "../../features/watchlist/watchlistSlice";
 
 function SearchOutput({ data, name, loading }) {
     const navigate = useNavigate()
-     const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn)
-
-    function HandleWatchTrailer(){
-       window.open(`https://www.youtube.com/results?search_query=${name} movie trailer`, "_blank");
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const dispatch = useDispatch()
+    function HandleWatchTrailer() {
+        window.open(`https://www.youtube.com/results?search_query=${name} movie trailer`, "_blank");
     }
-    
-    function HandleWatchList(){
-        if(!isLoggedIn){
-           navigate("/login")   
+
+    function HandleWatchList() {
+        if (!isLoggedIn) {
+            navigate("/login")
+        } else {
+            const movieName = data.Title;
+            dispatch(addToWatchlist({ data, movieName }))
         }
+
     }
     if (loading) {
         return <Loading />;
@@ -57,7 +62,7 @@ function SearchOutput({ data, name, loading }) {
                             Add To Watchlist
                         </Button>
 
-                        <Button clickHandle={HandleWatchTrailer}  css="p-2 rounded-4xl text-black m-2 bg-green-700">
+                        <Button clickHandle={HandleWatchTrailer} css="p-2 rounded-4xl text-black m-2 bg-green-700">
                             <span className="flex items-center gap-1">
                                 <FaPlay /> Watch Trailer
                             </span>
@@ -74,7 +79,7 @@ function SearchOutput({ data, name, loading }) {
                     <details name="faq-group">
                         <summary className="cursor-pointer font-semibold">Description</summary>
                         <p className="mt-2 text-gray-200">{data?.Plot}</p>
-                    </details> 
+                    </details>
 
                     <details name="faq-group">
                         <summary className="cursor-pointer font-semibold">Language</summary>

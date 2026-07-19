@@ -37,7 +37,7 @@ function Profile() {
                 <div className="w-full text-white">
                     <h2 className="font-semibold mb-1">Email</h2>
                     <div className="border rounded-lg px-3 py-2">
-                        adityapote120@gmail.com
+                   
                     </div>
                 </div>
 

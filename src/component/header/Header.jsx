@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Button from "../Button/Button"
 import Search from "../search/Search"
 import { Link, useNavigate } from "react-router-dom";
@@ -5,7 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 function Header() {
+    const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn)
+    const user = useSelector((state)=>state.auth.user)
+
+
     const navigate = useNavigate();
+    function HandleProfile() {
+        if (!isLoggedIn) {
+            navigate("/login")
+        }
+    }
     function HandleSearch(e) {
         const name = e.target.value;
         navigate(`/movie?name=${encodeURIComponent(name)}`);
@@ -19,7 +29,7 @@ function Header() {
             </Link>
             <Search placeholder={"search Movie..."} onSearch={HandleSearch} />
             <div >
-                <Button>  Profile</Button>
+                <Button clickHandle={HandleProfile}>  {isLoggedIn? user.username :"profile"}</Button>
                 <Button>Watchlist</Button>
             </div>
         </nav>

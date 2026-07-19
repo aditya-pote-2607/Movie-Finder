@@ -4,9 +4,7 @@ import router from './routes/AppRoutes.jsx'
 
 function App() {
   return (
-    // <ContextAppProvider>
       <RouterProvider router={router} />
-    //  {/* </ContextAppProvider> */}
   )
 }
 

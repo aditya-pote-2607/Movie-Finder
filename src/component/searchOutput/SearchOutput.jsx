@@ -2,10 +2,21 @@ import { FaPlay } from "react-icons/fa";
 import Button from "../Button/Button";
 import NotFound from "../../pages/NotFound";
 import Loading from "../loading/Loading";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function SearchOutput({ data, name, loading }) {
+    const navigate = useNavigate()
+     const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn)
+
     function HandleWatchTrailer(){
        window.open(`https://www.youtube.com/results?search_query=${name} movie trailer`, "_blank");
+    }
+    
+    function HandleWatchList(){
+        if(!isLoggedIn){
+           navigate("/login")   
+        }
     }
     if (loading) {
         return <Loading />;
@@ -42,7 +53,7 @@ function SearchOutput({ data, name, loading }) {
                             IMDB: {data?.imdbRating}/10
                         </span>
                         <br />
-                        <Button css="border rounded-4xl m-2">
+                        <Button clickHandle={HandleWatchList} css="border rounded-4xl m-2">
                             Add To Watchlist
                         </Button>
 

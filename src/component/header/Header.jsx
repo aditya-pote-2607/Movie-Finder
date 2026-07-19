@@ -14,6 +14,8 @@ function Header() {
     function HandleProfile() {
         if (!isLoggedIn) {
             navigate("/login")
+        }else{
+            navigate("/Profile")
         }
     }
     function HandleSearch(e) {
